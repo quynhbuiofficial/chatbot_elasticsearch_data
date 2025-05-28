@@ -1,0 +1,2 @@
+# chatbot_elasticsearch_data
+push_elastichsearch_tma&amp;law
