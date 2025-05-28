@@ -1,0 +1,2 @@
+INDEX_NAME_HYBRID_TMA = 'tma_hybrid'
+INDEX_NAME_HYBRID_LAW = 'data_law'

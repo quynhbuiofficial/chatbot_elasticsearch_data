@@ -1,6 +1,6 @@
 from utils import get_es_client
 from elasticsearch import Elasticsearch
-from config import INDEX_NAME_HYBRID
+from config import INDEX_NAME_HYBRID_TMA
 from tqdm import tqdm
 from pprint import pprint
 import json
@@ -11,12 +11,12 @@ def index_data(documents, model: SentenceTransformer):
     es = get_es_client(max_retries=5, sleep_time=5)
     _ = _create_index(es=es)
     _ = _insert_documents(es=es, documents=documents, model=model)
-    pprint(f'Indexed {len(documents)} documents into Elasticsearch index "{INDEX_NAME_HYBRID}"')
+    pprint(f'Indexed {len(documents)} documents into Elasticsearch index "{INDEX_NAME_HYBRID_TMA}"')
 
 def _create_index(es: Elasticsearch):
-    es.indices.delete(index=INDEX_NAME_HYBRID, ignore_unavailable=True)
+    es.indices.delete(index=INDEX_NAME_HYBRID_TMA, ignore_unavailable=True)
     return es.indices.create(
-        index=INDEX_NAME_HYBRID,
+        index=INDEX_NAME_HYBRID_TMA,
         body = {
             "mappings": {
                 "properties":{
@@ -51,7 +51,7 @@ def _insert_documents(es: Elasticsearch, documents, model: SentenceTransformer):
     operations = []
     # print("Inserting embedding field and doc...")
     for doc in tqdm(documents, total=(len(documents)), desc='Indexing documents'):
-        operations.append({'index': {'_index': INDEX_NAME_HYBRID}})
+        operations.append({'index': {'_index': INDEX_NAME_HYBRID_TMA}})
         operations.append({
             **doc,
             "embedding_field": model.encode(doc['content'])
