@@ -7,7 +7,7 @@ def get_es_client(max_retries = 1, sleep_time = 1):
     while i < max_retries:
         try:
             # es = Elasticsearch("http://localhost:9200", basic_auth=("elastic", "R5nRHqCLO7HQ9-8O5P*n"))
-            es = Elasticsearch("http://localhost:9200")
+            es = Elasticsearch("http://${{ env.ELASTICSEARCH_IP }}:9200")
             client_info = es.info()
             print("Connected to Elasticsearch! \n")
             pprint(client_info)
