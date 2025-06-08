@@ -1,2 +1,2 @@
 # chatbot_elasticsearch_data
-push_elastichsearch_tma&amp;law
+push_elastichsearch_tmaInfa_legalDoccument
